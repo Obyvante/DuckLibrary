@@ -1,5 +1,7 @@
 <p align="center">
 <img src="https://imgur.com/BwOX9Pw.png">
+</p>
+<p align="center">
 <a href="https://github.com/Obyvante/DuckLibrary/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Obyvante/DuckLibrary?color=red"></a>
 <a href="https://github.com/Obyvante/DuckLibrary/issues"><img src="https://img.shields.io/github/issues/Obyvante/DuckLibrary"></a>
 </p>
@@ -30,6 +32,7 @@ almost every useful feature to develop any kind of Minecraft server.
 - Metrics
 - Bukkit simplifier such as location, rotation, vectors and packets.
 
-###Wiki
+### Wiki
+
 - [Javadoc](https://github.com/Obyvante/DuckLibrary/issues)
 - [GitHub Wiki](https://github.com/Obyvante/DuckLibrary/issues)
