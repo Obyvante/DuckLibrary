@@ -1,4 +1,4 @@
-package com.duck;
+package com.duck.message;
 
 import org.bukkit.entity.Player;
 

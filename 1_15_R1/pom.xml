@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.duck</groupId>
-        <artifactId>duck-library</artifactId>
+        <artifactId>duck-library-parent</artifactId>
         <version>0.0.1</version>
     </parent>
 
@@ -13,6 +13,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
     <dependencies>
@@ -23,8 +24,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.duck</groupId>
-            <artifactId>common</artifactId>
+            <groupId>com.obyvante</groupId>
+            <artifactId>duck-library</artifactId>
             <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>

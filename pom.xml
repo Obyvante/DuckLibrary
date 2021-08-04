@@ -4,12 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.duck</groupId>
-    <artifactId>duck-library</artifactId>
+    <artifactId>duck-library-parent</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <finalName>${project.artifactId}</finalName>
     </properties>
 
     <modules>
@@ -33,6 +35,17 @@
             <url>https://repo.codemc.org/repository/nms/</url>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>obyvante</id>
+            <url>https://repo.obyvante.com/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>obyvante</id>
+            <url>https://repo.obyvante.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <build>
         <sourceDirectory>src/</sourceDirectory>

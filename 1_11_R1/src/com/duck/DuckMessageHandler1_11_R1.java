@@ -1,5 +1,6 @@
 package com.duck;
 
+import com.duck.message.DuckMessageHandler;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;

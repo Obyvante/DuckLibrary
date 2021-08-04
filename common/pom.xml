@@ -5,11 +5,17 @@
 
     <parent>
         <groupId>com.duck</groupId>
-        <artifactId>duck-library</artifactId>
+        <artifactId>duck-library-parent</artifactId>
         <version>0.0.1</version>
     </parent>
 
-    <artifactId>common</artifactId>
+    <groupId>com.obyvante</groupId>
+    <artifactId>duck-library</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
 
     <dependencies>
         <!-- Spigot -->

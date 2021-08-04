@@ -1,5 +1,5 @@
 name: DuckLibrary
 version: ${project.parent.version}
-main: com.duck.DuckLibrary
+main: com.duck.DuckLibraryPlugin
 author: Obyvante
 api-version: 1.13
