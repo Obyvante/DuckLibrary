@@ -1,4 +1,4 @@
-package com.duck;
+package com.duck.message;
 
 import com.duck.message.DuckMessageHandler;
 import net.md_5.bungee.api.ChatMessageType;
@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class DuckMessageHandler1_12_R1 implements DuckMessageHandler {
+public class DuckMessageHandler1_11_R1 implements DuckMessageHandler {
 
     /**
      * {@inheritDoc}

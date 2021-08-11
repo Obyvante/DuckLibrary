@@ -1,6 +1,5 @@
-package com.duck;
+package com.duck.message;
 
-import com.duck.message.DuckMessageHandler;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;

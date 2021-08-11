@@ -1,0 +1,115 @@
+package com.duck.scheduler;
+
+import com.duck.DuckLibrary;
+import org.bukkit.Bukkit;
+
+import javax.annotation.Nonnull;
+import java.util.concurrent.TimeUnit;
+
+public class DuckScheduler {
+
+    /**
+     * Scheduler types.
+     */
+    public enum Type {
+        SYNC,
+        ASYNC
+    }
+
+    private final Type type;
+
+    private int delay;
+    private TimeUnit delayType;
+
+    private int repeatingDelay;
+    private TimeUnit repeatingDelayType;
+
+    private Runnable cachedRunnable;
+
+    public DuckScheduler(Type type) {
+        this.type = type;
+    }
+
+    public DuckScheduler(Type type, int delay, int repeatingDelay, TimeUnit repeatingDelayType) {
+        this.type = type;
+        this.delay = delay;
+        this.repeatingDelay = repeatingDelay;
+        this.repeatingDelayType = repeatingDelayType;
+    }
+
+    /**
+     * Runs scheduler after declared time.
+     *
+     * @param delay     Scheduler after delay.
+     * @param delayType Scheduler after delay type.
+     * @return Duck Scheduler builder.
+     */
+    @Nonnull
+    public DuckScheduler after(int delay, TimeUnit delayType) {
+        this.delay = delay;
+        this.delayType = delayType;
+        return this;
+    }
+
+    /**
+     * Runs scheduler every declared time.
+     *
+     * @param repeatingDelay     Scheduler repeating time.
+     * @param repeatingDelayType Scheduler repeating time type.
+     * @return Duck Scheduler builder.
+     */
+    public DuckScheduler every(int repeatingDelay, TimeUnit repeatingDelayType) {
+        this.repeatingDelay = repeatingDelay;
+        this.repeatingDelayType = repeatingDelayType;
+        return this;
+    }
+
+    /**
+     * Gets cached runnable.
+     *
+     * @return Runnable.
+     */
+    public Runnable getCachedRunnable() {
+        return cachedRunnable;
+    }
+
+    /**
+     * Sets cached runnable
+     *
+     * @param cachedRunnable Runnable.
+     */
+    public DuckScheduler setCachedRunnable(Runnable cachedRunnable) {
+        this.cachedRunnable = cachedRunnable;
+        return this;
+    }
+
+    /**
+     * Runs configured Duck Scheduler.
+     *
+     * @param runnable Runnable.
+     * @return Bukkit task id.
+     */
+    public int run(Runnable runnable) {
+
+        long delay = this.delayType == null ? 0 : Math.max(this.delayType.toMillis(this.delay) / 50, 0);
+        long repeating_delay = this.repeatingDelayType == null ? 0 : Math.max(this.repeatingDelayType.toMillis(this.repeatingDelay) / 50, 0);
+
+        int task_id;
+        if (this.type == Type.SYNC) {
+            if (repeating_delay != 0)
+                task_id = Bukkit.getScheduler().scheduleSyncRepeatingTask(DuckLibrary.getInstance(), runnable, delay, repeating_delay);
+            else if (delay != 0)
+                task_id = Bukkit.getScheduler().scheduleSyncDelayedTask(DuckLibrary.getInstance(), runnable, delay);
+            else
+                task_id = Bukkit.getScheduler().runTask(DuckLibrary.getInstance(), runnable).getTaskId();
+        } else {
+            if (repeating_delay != 0)
+                task_id = Bukkit.getScheduler().runTaskTimerAsynchronously(DuckLibrary.getInstance(), runnable, delay, repeating_delay).getTaskId();
+            else if (delay != 0)
+                task_id = Bukkit.getScheduler().runTaskLaterAsynchronously(DuckLibrary.getInstance(), runnable, delay).getTaskId();
+            else
+                task_id = Bukkit.getScheduler().runTaskAsynchronously(DuckLibrary.getInstance(), runnable).getTaskId();
+        }
+        return task_id;
+    }
+}

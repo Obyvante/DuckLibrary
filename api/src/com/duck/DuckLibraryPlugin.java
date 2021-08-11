@@ -1,5 +1,6 @@
 package com.duck;
 
+import com.duck.message.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,7 @@ public class DuckLibraryPlugin extends JavaPlugin {
 
         long ms = System.currentTimeMillis();
 
+        //Initializes Duck Library and Java Plugin.
         try {
             this.initialize();
         } catch (Exception exception) {
@@ -22,15 +24,20 @@ public class DuckLibraryPlugin extends JavaPlugin {
             return;
         }
 
+        //Makes Duck Library active.
+        DuckLibrary.setStatus(true);
+
         //Test register
         Bukkit.getPluginManager().registerEvents(new DuckLibraryTest(), this);
-
-        DuckLibrary.setStatus(true);
 
         DuckLibrary.getLogger().info("Successfully initialized in " + (System.currentTimeMillis() - ms) + " ms!");
     }
 
     private void initialize() throws Exception {
+        //Sets java plugin for Duck Library.
+        DuckLibrary.setInstance(this);
+
+        //Converts Java package name to Duck Protocol Version.
         DuckProtocolVersion protocolVersion = DuckProtocolVersion.findProtocolVersion(Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3]);
 
         //Sets protocol version.

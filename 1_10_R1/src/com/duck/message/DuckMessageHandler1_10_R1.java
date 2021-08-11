@@ -1,15 +1,15 @@
-package com.duck;
+package com.duck.message;
 
 import com.duck.message.DuckMessageHandler;
-import net.minecraft.server.v1_9_R2.IChatBaseComponent;
-import net.minecraft.server.v1_9_R2.PacketPlayOutChat;
-import net.minecraft.server.v1_9_R2.PacketPlayOutTitle;
+import net.minecraft.server.v1_10_R1.IChatBaseComponent;
+import net.minecraft.server.v1_10_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_10_R1.PacketPlayOutTitle;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_9_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-public class DuckMessageHandler1_9_R2 implements DuckMessageHandler {
+public class DuckMessageHandler1_10_R1 implements DuckMessageHandler {
 
     /**
      * {@inheritDoc}
