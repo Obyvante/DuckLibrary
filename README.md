@@ -7,31 +7,18 @@
 <a href="https://lgtm.com/projects/g/Obyvante/DuckLibrary"><img src="https://img.shields.io/lgtm/grade/java/g/Obyvante/DuckLibrary.svg?logo=lgtm&logoWidth=18"></a>
 </p>
 
-Duck Library is a library for developers who don't want to spend their time to write same library consistently. It has
-almost every useful feature to develop any kind of Minecraft server.
+Duck Library is a library for developers who don't want to spend their time to make same library consistently. It has
+almost every useful feature to develop any kind of Minecraft server. It uses bukkit functionality instead complex Java
+as much as possible to pure become pure bukkit library.
 
 ### Supporting versions: 1.8.x to 1.17.x
 
-### Libraries
+### Libraries (Known)
 
-- MySQL, MongoDB, Redis and InfluxDB
-- Messages such as title and action bar.
-- Packet
-- Hologram
-- NPC
-- Particle
-- Scoreboard
-- World border
-- Player list (TAB)
-- Name tag
-- Sign and anvil UI
-- Chat input handler
-- Custom logger (info, warn, error adn debug)
-- Duck Chain (Communicating between servers via Redis channels)
-- Proxy security
-- Proxy connection metadata (Binding metadata to player profile and listen in bukkit server.)
-- Metrics
-- Bukkit simplifier such as location, rotation, vectors and packets.
+- Packets
+- Schedulers
+- Events
+- Messages (Bukkit/Spigot)
 
 ### First Installation
 
@@ -41,6 +28,7 @@ build [here](https://github.com/Obyvante/DuckLibrary/issues)
 Using as a maven dependency
 
 ```xml
+
 <repository>
     <id>obyvante-releases</id>
     <url>https://repo.obyvante.com/repository/maven-releases/</url>
@@ -48,9 +36,10 @@ Using as a maven dependency
 ```
 
 ```xml
+
 <dependency>
     <groupId>com.obyvante</groupId>
-    <artifactId>duck-library</artifactId>
+    <artifactId>common</artifactId>
     <version>0.0.1</version>
 </dependency>
 ```

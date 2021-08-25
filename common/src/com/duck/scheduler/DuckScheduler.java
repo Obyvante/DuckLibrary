@@ -4,9 +4,10 @@ import com.duck.DuckLibrary;
 import org.bukkit.Bukkit;
 
 import javax.annotation.Nonnull;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class DuckScheduler {
+public final class DuckScheduler {
 
     /**
      * Scheduler types.
@@ -26,11 +27,18 @@ public class DuckScheduler {
 
     private Runnable cachedRunnable;
 
-    public DuckScheduler(Type type) {
+    public DuckScheduler(@Nonnull Type type) {
+        //Objects null control
+        Objects.requireNonNull(type, "type cannot be null!");
+        //Root construction
         this.type = type;
     }
 
-    public DuckScheduler(Type type, int delay, int repeatingDelay, TimeUnit repeatingDelayType) {
+    public DuckScheduler(@Nonnull Type type, int delay, int repeatingDelay, @Nonnull TimeUnit repeatingDelayType) {
+        //Objects null control
+        Objects.requireNonNull(type, "type cannot be null!");
+        Objects.requireNonNull(repeatingDelayType, "repeating delay type cannot be null!");
+        //Root construction
         this.type = type;
         this.delay = delay;
         this.repeatingDelay = repeatingDelay;
@@ -45,7 +53,8 @@ public class DuckScheduler {
      * @return Duck Scheduler builder.
      */
     @Nonnull
-    public DuckScheduler after(int delay, TimeUnit delayType) {
+    public DuckScheduler after(int delay, @Nonnull TimeUnit delayType) {
+        Objects.requireNonNull(delayType, "delay type cannot be null!");
         this.delay = delay;
         this.delayType = delayType;
         return this;
@@ -58,7 +67,9 @@ public class DuckScheduler {
      * @param repeatingDelayType Scheduler repeating time type.
      * @return Duck Scheduler builder.
      */
-    public DuckScheduler every(int repeatingDelay, TimeUnit repeatingDelayType) {
+    @Nonnull
+    public DuckScheduler every(int repeatingDelay, @Nonnull TimeUnit repeatingDelayType) {
+        Objects.requireNonNull(repeatingDelayType, "repeating delay type cannot be null!");
         this.repeatingDelay = repeatingDelay;
         this.repeatingDelayType = repeatingDelayType;
         return this;
@@ -78,7 +89,9 @@ public class DuckScheduler {
      *
      * @param cachedRunnable Runnable.
      */
-    public DuckScheduler setCachedRunnable(Runnable cachedRunnable) {
+    @Nonnull
+    public DuckScheduler setCachedRunnable(@Nonnull Runnable cachedRunnable) {
+        Objects.requireNonNull(cachedRunnable, "cached runnable cannot be null!");
         this.cachedRunnable = cachedRunnable;
         return this;
     }
@@ -89,8 +102,8 @@ public class DuckScheduler {
      * @param runnable Runnable.
      * @return Bukkit task id.
      */
-    public int run(Runnable runnable) {
-
+    public int run(@Nonnull Runnable runnable) throws IllegalArgumentException {
+        Objects.requireNonNull(runnable, "runnable cannot be null!");
         long delay = this.delayType == null ? 0 : Math.max(this.delayType.toMillis(this.delay) / 50, 0);
         long repeating_delay = this.repeatingDelayType == null ? 0 : Math.max(this.repeatingDelayType.toMillis(this.repeatingDelay) / 50, 0);
 
@@ -111,5 +124,14 @@ public class DuckScheduler {
                 task_id = Bukkit.getScheduler().runTaskAsynchronously(DuckLibrary.getInstance(), runnable).getTaskId();
         }
         return task_id;
+    }
+
+    /**
+     * Runs cached Duck Scheduler.
+     *
+     * @return Bukkit task id.
+     */
+    public int runCached() {
+        return this.run(this.cachedRunnable);
     }
 }

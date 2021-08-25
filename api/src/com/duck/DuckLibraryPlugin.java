@@ -1,10 +1,11 @@
 package com.duck;
 
 import com.duck.message.*;
+import com.duck.packet.DuckPacket1_17_R1;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class DuckLibraryPlugin extends JavaPlugin {
+public final class DuckLibraryPlugin extends JavaPlugin {
 
     //Instance
     private static DuckLibraryPlugin instance;
@@ -26,9 +27,6 @@ public class DuckLibraryPlugin extends JavaPlugin {
 
         //Makes Duck Library active.
         DuckLibrary.setStatus(true);
-
-        //Test register
-        Bukkit.getPluginManager().registerEvents(new DuckLibraryTest(), this);
 
         DuckLibrary.getLogger().info("Successfully initialized in " + (System.currentTimeMillis() - ms) + " ms!");
     }
@@ -64,9 +62,10 @@ public class DuckLibraryPlugin extends JavaPlugin {
             DuckLibrary.setMessageHandler(new DuckMessageHandler1_16_R3());
         } else if (protocolVersion == DuckProtocolVersion.PROTOCOL_1_17_R1) {
             DuckLibrary.setMessageHandler(new DuckMessageHandler1_17_R1());
+            DuckLibrary.setPacket(new DuckPacket1_17_R1());
         }
 
-        //Inform about protocol version on console
+        //Informs about protocol version on console
         DuckLibrary.getLogger().info("Bukkit protocol version " + protocolVersion.getProtocol() + " is initialized.");
     }
 

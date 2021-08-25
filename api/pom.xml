@@ -11,6 +11,8 @@
     <artifactId>api</artifactId>
 
     <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
         <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
 
@@ -23,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>com.obyvante</groupId>
-            <artifactId>duck-library</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
