@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +20,7 @@ public abstract class DuckPacket {
      * @param player Bukkit player.
      * @return Duck Packet Handler for bukkit player.
      */
+    @Nullable
     public DuckPacketHandler getDuckPacketHandler(@Nonnull Player player) {
         Objects.requireNonNull(player, "player cannot be null!");
         return packetHandlers.get(player.getUniqueId());
@@ -30,6 +32,7 @@ public abstract class DuckPacket {
      * @param id Bukkit player unique id.
      * @return Duck Packet Handler for bukkit player.
      */
+    @Nullable
     public DuckPacketHandler getDuckPacketHandler(@Nonnull UUID id) {
         Objects.requireNonNull(id, "id cannot be null!");
         return packetHandlers.get(id);

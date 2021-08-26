@@ -2,6 +2,7 @@ package com.duck;
 
 import com.duck.message.*;
 import com.duck.packet.DuckPacket1_17_R1;
+import com.duck.packet.DuckPacket1_8_R3;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -44,6 +45,7 @@ public final class DuckLibraryPlugin extends JavaPlugin {
         //Initializes protocol classes.
         if (protocolVersion == DuckProtocolVersion.PROTOCOL_1_8_R3) {
             DuckLibrary.setMessageHandler(new DuckMessageHandler1_8_R3());
+            DuckLibrary.setPacket(new DuckPacket1_8_R3());
         } else if (protocolVersion == DuckProtocolVersion.PROTOCOL_1_9_R2) {
             DuckLibrary.setMessageHandler(new DuckMessageHandler1_9_R2());
         } else if (protocolVersion == DuckProtocolVersion.PROTOCOL_1_10_R1) {

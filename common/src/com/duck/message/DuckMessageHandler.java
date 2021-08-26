@@ -2,6 +2,8 @@ package com.duck.message;
 
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
+
 public interface DuckMessageHandler {
 
     /**
@@ -13,7 +15,7 @@ public interface DuckMessageHandler {
      * @param stay_duration     Stay duration.
      * @param show_out_duration Show out duration.
      */
-    void sendTitle(String title, String subtitle, int show_up_duration, int stay_duration, int show_out_duration);
+    void sendTitle(@Nonnull String title, @Nonnull String subtitle, int show_up_duration, int stay_duration, int show_out_duration);
 
     /**
      * Shows bukkit title to player.
@@ -25,14 +27,14 @@ public interface DuckMessageHandler {
      * @param stay_duration     Stay duration.
      * @param show_out_duration Show out duration.
      */
-    void sendTitle(Player player, String title, String subtitle, int show_up_duration, int stay_duration, int show_out_duration);
+    void sendTitle(@Nonnull Player player, @Nonnull String title, @Nonnull String subtitle, int show_up_duration, int stay_duration, int show_out_duration);
 
     /**
      * Sends bukkit action bar to everyone.
      *
      * @param message Message.
      */
-    void sendActionBar(String message);
+    void sendActionBar(@Nonnull String message);
 
     /**
      * Sends bukkit action bar to everyone.
@@ -40,6 +42,6 @@ public interface DuckMessageHandler {
      * @param player  Player.
      * @param message Message.
      */
-    void sendActionBar(Player player, String message);
+    void sendActionBar(@Nonnull Player player, @Nonnull String message);
 
 }

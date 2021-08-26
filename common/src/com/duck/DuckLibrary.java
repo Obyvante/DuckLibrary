@@ -129,6 +129,7 @@ public final class DuckLibrary {
      * @param runnable Duck Scheduler builder as synchronous.
      */
     public static void mainThread(@Nonnull Runnable runnable) {
+        Objects.requireNonNull(runnable, "runnable cannot be null!");
         new DuckScheduler(DuckScheduler.Type.SYNC).run(runnable);
     }
 
@@ -152,6 +153,7 @@ public final class DuckLibrary {
      * @return Scheduler bukkit task id.
      */
     public static int runSyncScheduler(@Nonnull Runnable runnable) {
+        Objects.requireNonNull(runnable, "runnable cannot be null!");
         return new DuckScheduler(DuckScheduler.Type.SYNC).run(runnable);
     }
 
@@ -161,6 +163,8 @@ public final class DuckLibrary {
      * @return Scheduler bukkit task id.
      */
     public static int runDelayedSyncScheduler(@Nonnull Runnable runnable, int delay, @Nonnull TimeUnit delayType) {
+        Objects.requireNonNull(runnable, "runnable cannot be null!");
+        Objects.requireNonNull(delayType, "delay type cannot be null!");
         return new DuckScheduler(DuckScheduler.Type.SYNC).after(delay, delayType).run(runnable);
     }
 
@@ -170,6 +174,8 @@ public final class DuckLibrary {
      * @return Scheduler bukkit task id.
      */
     public static int runRepeatingSyncScheduler(@Nonnull Runnable runnable, int repeatingDelay, @Nonnull TimeUnit repeatingDelayType) {
+        Objects.requireNonNull(runnable, "runnable cannot be null!");
+        Objects.requireNonNull(repeatingDelayType, "repeating delay type cannot be null!");
         return new DuckScheduler(DuckScheduler.Type.SYNC).after(repeatingDelay, repeatingDelayType).run(runnable);
     }
 
@@ -193,6 +199,7 @@ public final class DuckLibrary {
      * @return Scheduler bukkit task id.
      */
     public static int runAsyncScheduler(@Nonnull Runnable runnable) {
+        Objects.requireNonNull(runnable, "runnable cannot be null!");
         return new DuckScheduler(DuckScheduler.Type.ASYNC).run(runnable);
     }
 
@@ -202,6 +209,8 @@ public final class DuckLibrary {
      * @return Scheduler bukkit task id.
      */
     public static int runDelayedAsyncScheduler(@Nonnull Runnable runnable, int delay, @Nonnull TimeUnit delayType) {
+        Objects.requireNonNull(runnable, "runnable cannot be null!");
+        Objects.requireNonNull(delayType, "delay type cannot be null!");
         return new DuckScheduler(DuckScheduler.Type.ASYNC).after(delay, delayType).run(runnable);
     }
 
@@ -211,6 +220,8 @@ public final class DuckLibrary {
      * @return Scheduler bukkit task id.
      */
     public static int runRepeatingAsyncScheduler(@Nonnull Runnable runnable, int repeatingDelay, @Nonnull TimeUnit repeatingDelayType) {
+        Objects.requireNonNull(runnable, "runnable cannot be null!");
+        Objects.requireNonNull(repeatingDelayType, "repeating delay type cannot be null!");
         return new DuckScheduler(DuckScheduler.Type.ASYNC).after(repeatingDelay, repeatingDelayType).run(runnable);
     }
 
@@ -233,13 +244,32 @@ public final class DuckLibrary {
     /*
     EVENT
      */
+
+    /**
+     * Registers new duck event.
+     *
+     * @param eventClass Bukkit event class.
+     * @param <T>        Bukkit event.
+     * @return Duck Event builder.
+     */
     @Nonnull
     public static <T extends Event> DuckEvent<T> registerEvent(@Nonnull Class<T> eventClass) {
+        Objects.requireNonNull(eventClass, "event class cannot be null!");
         return new DuckEvent<>(eventClass);
     }
 
+    /**
+     * Registers new duck event.
+     *
+     * @param eventClass Bukkit event class.
+     * @param priority   Event priority.
+     * @param <T>        Bukkit event.
+     * @return Duck Event builder.
+     */
     @Nonnull
-    public static <T extends Event> DuckEvent<T> registerEvent(@Nonnull Class<T> eventClass, EventPriority priority) {
+    public static <T extends Event> DuckEvent<T> registerEvent(@Nonnull Class<T> eventClass, @Nonnull EventPriority priority) {
+        Objects.requireNonNull(eventClass, "event class cannot be null!");
+        Objects.requireNonNull(priority, "priority cannot be null!");
         return new DuckEvent<>(eventClass, priority);
     }
 

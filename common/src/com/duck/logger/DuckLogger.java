@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public final class DuckLogger {
 
-    public static final String PREFIX = "[Duck Library]";
+    private static final String PREFIX = "[Duck Library]";
 
     /**
      * Sends information message to bukkit console.

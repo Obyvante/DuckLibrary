@@ -1,6 +1,8 @@
 package com.duck;
 
+import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.Objects;
 
 public enum DuckProtocolVersion {
     PROTOCOL_1_8_R3("v1_8_R3"),
@@ -16,7 +18,8 @@ public enum DuckProtocolVersion {
 
     private final String protocol;
 
-    DuckProtocolVersion(String protocol) {
+    DuckProtocolVersion(@Nonnull String protocol) {
+        Objects.requireNonNull(protocol, "protocol cannot be null!");
         this.protocol = protocol;
     }
 
@@ -25,6 +28,7 @@ public enum DuckProtocolVersion {
      *
      * @return Protocol bukkit version.
      */
+    @Nonnull
     public String getProtocol() {
         return protocol;
     }
@@ -35,7 +39,8 @@ public enum DuckProtocolVersion {
      * @param version Protocol version string.
      * @return Duck protocol version.
      */
-    public static DuckProtocolVersion findProtocolVersion(String version) {
+    public static DuckProtocolVersion findProtocolVersion(@Nonnull String version) {
+        Objects.requireNonNull(version, "version string cannot be null!");
         return Arrays.stream(values())
                 .filter(duckProtocolVersion -> duckProtocolVersion.getProtocol().equals(version))
                 .findFirst()
