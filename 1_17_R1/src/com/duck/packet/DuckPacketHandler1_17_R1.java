@@ -15,7 +15,7 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class DuckPacketHandler1_17_R1 implements DuckPacketHandler {
+public final class DuckPacketHandler1_17_R1 implements DuckPacketHandler {
 
     private final UUID id;
     private final ChannelPipeline pipeline;

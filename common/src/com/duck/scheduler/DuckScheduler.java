@@ -27,6 +27,8 @@ public final class DuckScheduler {
 
     private Runnable cachedRunnable;
 
+    private int bukkitTaskId = -1;
+
     public DuckScheduler(@Nonnull Type type) {
         //Objects null control
         Objects.requireNonNull(type, "type cannot be null!");
@@ -88,12 +90,31 @@ public final class DuckScheduler {
      * Sets cached runnable
      *
      * @param cachedRunnable Runnable.
+     * @return Duck scheduler builder.
      */
     @Nonnull
     public DuckScheduler setCachedRunnable(@Nonnull Runnable cachedRunnable) {
         Objects.requireNonNull(cachedRunnable, "cached runnable cannot be null!");
         this.cachedRunnable = cachedRunnable;
         return this;
+    }
+
+    /**
+     * Runs cached Duck Scheduler.
+     *
+     * @return Bukkit task id.
+     */
+    public int runCached() {
+        return this.run(this.cachedRunnable);
+    }
+
+    /**
+     * If there is an ongoing task, it will stop it.
+     */
+    public void stop() {
+        if (this.bukkitTaskId == -1)
+            return;
+        Bukkit.getScheduler().cancelTask(this.bukkitTaskId);
     }
 
     /**
@@ -123,15 +144,7 @@ public final class DuckScheduler {
             else
                 task_id = Bukkit.getScheduler().runTaskAsynchronously(DuckLibrary.getInstance(), runnable).getTaskId();
         }
+        this.bukkitTaskId = task_id;
         return task_id;
-    }
-
-    /**
-     * Runs cached Duck Scheduler.
-     *
-     * @return Bukkit task id.
-     */
-    public int runCached() {
-        return this.run(this.cachedRunnable);
     }
 }

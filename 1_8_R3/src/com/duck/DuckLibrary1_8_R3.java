@@ -1,4 +1,4 @@
 package com.duck;
 
-public class DuckLibrary1_8_R3 {
+public final class DuckLibrary1_8_R3 {
 }

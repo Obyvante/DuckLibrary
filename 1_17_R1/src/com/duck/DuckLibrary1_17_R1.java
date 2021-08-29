@@ -1,5 +1,5 @@
 package com.duck;
 
-public class DuckLibrary1_17_R1 {
+public final class DuckLibrary1_17_R1 {
 
 }

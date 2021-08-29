@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class DuckPacket1_8_R3 extends DuckPacket {
+public final class DuckPacket1_8_R3 extends DuckPacket {
 
     /**
      * Main construction.

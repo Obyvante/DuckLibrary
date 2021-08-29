@@ -124,6 +124,16 @@ public final class DuckLibrary {
      */
 
     /**
+     * Creates Duck Scheduler builder.
+     *
+     * @return Duck Scheduler builder.
+     */
+    @Nonnull
+    public static DuckScheduler createScheduler(DuckScheduler.Type type) {
+        return new DuckScheduler(type);
+    }
+
+    /**
      * Runs Duck Scheduler as a main thread.
      *
      * @param runnable Duck Scheduler builder as synchronous.
